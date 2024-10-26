@@ -74,7 +74,7 @@ func ParsePeers(options option.WireGuardOutboundOptions, logger log.ContextLogge
 				AllowedIPs: rawPeer.AllowedIPs,
 			}
 
-			if rawPeer.ServerOptions.Server == "warp_auto" {
+			if rawPeer.ServerOptions.Server == "warp.auto" {
 				if isPeerCloudflareWarp(rawPeer.PublicKey) {
 					logger.Info("running WARP IP scanner, this might take a while...")
 
@@ -145,7 +145,7 @@ func ParsePeers(options option.WireGuardOutboundOptions, logger log.ContextLogge
 			peer.AllowedIPs = append(peer.AllowedIPs, netip.PrefixFrom(netip.IPv6Unspecified(), 0).String())
 		}
 
-		if options.Server == "warp_auto" {
+		if options.Server == "warp.auto" {
 			if isPeerCloudflareWarp(options.PeerPublicKey) {
 				logger.Info("running WARP IP scanner, this might take a while...")
 
